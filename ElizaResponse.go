@@ -31,11 +31,11 @@ func ElizaResponse(input string) string {
         return "Why don’t you tell me more about your father?"
     }
 
-     if matched, _ := regexp.MatchString(`(?i).*\bmother\b.*`, input); matched {
+     else if matched, _ := regexp.MatchString(`(?i).*\bmother\b.*`, input); matched {
         return "Why don’t you tell me more about your ?"
     }
 
-     if matched, _ := regexp.MatchString(`(?i).*\bquestion\b.*`, input); matched {
+     else if matched, _ := regexp.MatchString(`(?i).*\bquestion\b.*`, input); matched {
         return "Tell me about where you come from?"
     }
 

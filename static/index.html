@@ -50,30 +50,34 @@
       const form = $("#userInput");
       const list = $("#conversation_list");
 
+      // Main function that when enter key is pressed, Eliza go file is
+      // called to give a certain output depending on input 
       form.keypress(function(event){
         if(event.keyCode != 13){ // Number 13 used for the enter key
             return;
         }
 
-        event.preventDefault(); 
-
         const userText = form.val();
         form.val(" "); // Clears the text box
-        
+
+        event.preventDefault(); 
+
+        // Checks to see if user input is valid
         list.append("<li class='list-group-item list-group-item-success'>"+"User : " + userText + "</li>");
 
         const queryParams = {"userInput" : userText }
-        $.get("/chat", queryParams)
-            .done(function(resp){
+        //Jquery to detect user input if localhost was successful 
+        $.get("/uInput", queryParams)
+        .done(function(resp){
                 const newItem = "<li class='list-group-item list-group-item-info'>"+"Eliza : " + resp + "</li>";
                 setTimeout(function(){
                     $("html, body").scrollTop($("body").height());
                     list.append(newItem)
-                }, 50);//set timeout to give wait to response
-            }).fail(function(){
-                const newItem = "<li class='list-group-item list-group-item-danger' >Eliza is currently unavailable right now";
-                list.append(newItem);
-            });
+                }, 100);// Setting wait time for output
+        }).fail(function(){
+            const newItem = "<li class='list-group-item list-group-item-danger' >Eliza is currently unavailable right now";
+            list.append(newItem);
+        });
       });
       </script>  
 
