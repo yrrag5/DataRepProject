@@ -1,0 +1,82 @@
+<!-- Root Page -->
+<!-- Author: Garry Cummins -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>    
+
+  </head>
+<body>
+
+<div class= "container">
+<h1> Eliza </h1>
+</div>
+
+<!-- User Input and Eliza chatbot output history -->
+ <div class="container">
+         <h2 class="text-center">Eliza ChatBot</h2>
+    </div>
+    <div class="listClass">
+        <ul id="conversation_list" ></ul>
+ </div>
+
+ <!-- User input is entered for Eliza response -->
+<form>
+    User Input: <input class = "form-control" id = "userInput" name="user"></input><br> <br> <br>
+    <!-- Display chatbot output according to user input -->
+</form>
+
+
+
+
+   <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <script>
+     
+      const form = $("#userInput");
+      const list = $("#conversation_list");
+
+      form.keypress(function(event){
+        if(event.keyCode != 13){ // Number 13 used for the enter key
+            return;
+        }
+
+        event.preventDefault(); 
+
+        const userText = form.val();
+        form.val(" "); // Clears the text box
+        
+        list.append("<li class='list-group-item list-group-item-success'>"+"User : " + userText + "</li>");
+
+        const queryParams = {"userInput" : userText }
+        $.get("/chat", queryParams)
+            .done(function(resp){
+                const newItem = "<li class='list-group-item list-group-item-info'>"+"Eliza : " + resp + "</li>";
+                setTimeout(function(){
+                    $("html, body").scrollTop($("body").height());
+                    list.append(newItem)
+                }, 50);//set timeout to give wait to response
+            }).fail(function(){
+                const newItem = "<li class='list-group-item list-group-item-danger' >Eliza is currently unavailable right now";
+                list.append(newItem);
+            });
+      });
+      </script>  
+
+
+</body>
+</html>
