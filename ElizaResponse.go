@@ -35,25 +35,21 @@ func ElizaResponse(input string) string {
     // (?i). for flag, \b before and after 
     
     // Keyword hello, hi, hey response
-    if matched, _ := regexp.MatchString(`.*\bhello\b.*`, input); matched {
+    if matched, _ := regexp.MatchString(`(?i).*\bhello\b.*`, input); matched {
         return "Hello human, how are you doing today?"
     }
 
-     if matched, _ := regexp.MatchString(`.*\bhi\b.*`, input); matched {
+     if matched, _ := regexp.MatchString(`(?i).*\bhi\b.*`, input); matched {
         return "Hello human, how are you doing today?"
     }
 
-     if matched, _ := regexp.MatchString(`.*\bhey\b.*`, input); matched {
+     if matched, _ := regexp.MatchString(`(?i).*\bhey\b.*`, input); matched {
         return "Hello human, how are you doing today?"
     }
     //////////////////////////////////////////////////////////////////////////
 
-     // Keyword yourself, you response
+     // Keyword yourself response
     if matched, _ := regexp.MatchString(`(?i).*\byourself\b.*`, input); matched {
-        return "I am unable to comprehend how I'm feeling as I am a AI."
-    }
-
-     if matched, _ := regexp.MatchString(`(?i).*\byou\b.*`, input); matched {
         return "I am unable to comprehend how I'm feeling as I am a AI."
     }
     ////////////////////////////////////////////////////////////////////////////
