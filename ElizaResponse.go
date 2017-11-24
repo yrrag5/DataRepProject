@@ -4,7 +4,7 @@
 
 package main
 import (
-    //"os"
+    "os"
     "fmt"
     "net/http"
     "math/rand"
@@ -64,17 +64,22 @@ func ElizaResponse(input string) string {
         return "Im glad you noticed the background, are you looking forward to The Last Jedi?"
     }
 
-    
-
-
-    // Ends program if goodbye is entered 
     if matched, _ := regexp.MatchString(`(?i).*\bgoodbye\b.*`, input); matched {
-        return "Thank you for the conversation, until next time!"
-        //os.Exit(3))
-
+        return "May the force be with you!"
+        
     }
 
-return responses[rand.Intn(len(responses))]
+    if matched, _ := regexp.MatchString(`(?i).*\band also with you\b.*`, input); matched {
+        return "haha we did the thing (Type exit to finish)"
+    }
+
+    // Ends program if exit is entered  
+    if matched, _ := regexp.MatchString(`(?i).*\exit\b.*`, input); matched {
+        os.Exit(3)
+    }
+
+    return responses[rand.Intn(len(responses))]
+
 }// Eliza
 
 func main() {

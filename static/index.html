@@ -14,7 +14,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <style>
-        h1 {
+        h1, h2, t {
+            color: blanchedalmond;
             text-align: center;
         }
         body {
@@ -23,12 +24,24 @@
             background-attachment: fixed;
         }
 
-        u {
-                color: blue;
-                text-align: left;
+        #userInput {
+            color: green;
+            text-align: left;
         }
-    </style>    
 
+        #displayUser {
+            background-color: darkblue;
+            color: blanchedalmond;
+            text-align: left;
+        }
+
+         #displayEliza {
+             background-color: darkred;
+             color: blanchedalmond;
+             text-align: right;
+        }
+
+    </style>    
   </head>
 <body>
 
@@ -48,7 +61,7 @@
 
  <!-- User input is entered for Eliza response -->
 <form>
-    User Input: <u><input class = "form-control" id = "userInput" name="user" placeholder = "Enter text for Eliza to respond to"></input></u>
+   <t> User Input:</t> <input class = "form-control" id = "userInput" name="user" placeholder = "Enter text for Eliza to respond to"></input>
     <br> <br> <br>
    
 </form>
@@ -79,19 +92,19 @@
         event.preventDefault(); 
 
         // Checks to see if user input is valid
-        list.append("<li class='list-group-item list-group-item-success'>"+"User: " + userText + "</li>");
+        list.append("<li class='list-group-item list-group-item-success' id = 'displayUser'>"+"User: " + userText + "</li>");
 
         const queryParams = {"userInput" : userText }
         //Jquery to detect user input if localhost was successful 
         $.get("/uInput", queryParams)
         .done(function(resp){
-                const newItem = "<li class='list-group-item list-group-item-info'>"+"Eliza : " + resp + "</li>";
+                const newItem = "<li class='list-group-item list-group-item-info' id = 'displayEliza'>"+"Eliza : " + resp + "</li>";
                 setTimeout(function(){
                     $("html, body").scrollTop($("body").height());
                     list.append(newItem)
                 }, 100);// Setting wait time for output
         }).fail(function(){
-            const newItem = "<li class='list-group-item list-group-item-danger' >Eliza: I am currently unavailable right now sorry.";
+            const newItem = "<li class='list-group-item list-group-item-danger' id = 'displayEliza' >Eliza: I am currently unavailable right now sorry.";
                 window.alert("You must be running ElizaResponse.go in order to begin chat");
 
             list.append(newItem);
