@@ -5,7 +5,7 @@
 My name is Garry Cummins, I'm a software development student in GMIT. This chatbot was created for a project as part of the module Data Reprensentation and Query.
 
 ## Running Eliza
-The first step is to click clone or download located at the top right of this repository. Copy the URl and proceed to your cmd prompt. Now its expected to have go installed, cd into a folder you wish to clone your repo than type the command (git clone url).
+The first step is to click clone or download located at the top right of this repository. Copy the URl and proceed to your cmd prompt. Now its expected to have go installed, cd into a folder you wish to clone your repo than type the command (git clone url)
 
 Cd into the repo than type the command (go run ElizaResponse.go), allow access than go to localhost:8080 on your browser, the chatbot should now be visable.
 
