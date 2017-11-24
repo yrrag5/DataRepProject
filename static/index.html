@@ -14,31 +14,36 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <style>
+        /* Styling heading and text tags */
         h1, h2, t {
             color: blanchedalmond;
             text-align: center;
         }
+        /* Adds background image */
         body {
             background-image: url("../img/tlj.jpg");
             background-size: cover;
             background-attachment: fixed;
         }
-
+        /* Star wars themed input and output */
         #userInput {
             color: green;
             text-align: left;
         }
-
+        
         #displayUser {
             background-color: darkblue;
             color: blanchedalmond;
             text-align: left;
+            margin-right: 50%; 
         }
 
          #displayEliza {
              background-color: darkred;
              color: blanchedalmond;
              text-align: right;
+             margin-left: 50%;
+
         }
 
     </style>    
@@ -61,21 +66,16 @@
 
  <!-- User input is entered for Eliza response -->
 <form>
-   <t> User Input:</t> <input class = "form-control" id = "userInput" name="user" placeholder = "Enter text for Eliza to respond to"></input>
+    <t> User Input:</t> <input class = "form-control" id = "userInput" name="user" placeholder = "Enter text for Eliza to respond to" autocomplete="off"></input>
     <br> <br> <br>
-   
 </form>
 
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-
-
-   <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
-    <script>
-     
+<script>
       const form = $("#userInput");
       const list = $("#conversation_list");
 
@@ -102,7 +102,7 @@
                 setTimeout(function(){
                     $("html, body").scrollTop($("body").height());
                     list.append(newItem)
-                }, 100);// Setting wait time for output
+                }, 300);// Setting wait time for output
         }).fail(function(){
             const newItem = "<li class='list-group-item list-group-item-danger' id = 'displayEliza' >Eliza: I am currently unavailable right now sorry.";
                 window.alert("You must be running ElizaResponse.go in order to begin chat");
