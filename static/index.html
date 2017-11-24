@@ -1,5 +1,8 @@
-<!-- Root Page -->
+<!-- Index Root Page -->
 <!-- Author: Garry Cummins -->
+
+
+<!-- Index contains all CSS and JS used for the chatbot -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,27 +17,40 @@
         h1 {
             text-align: center;
         }
+        body {
+            background-image: url("../img/tlj.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        u {
+                color: blue;
+                text-align: left;
+        }
     </style>    
 
   </head>
 <body>
 
 <div class= "container">
-<h1> Eliza </h1>
+<h1> Welcome </h1>
 </div>
 
 <!-- User Input and Eliza chatbot output history -->
+
+ <!-- Display chatbot output according to user input -->
  <div class="container">
          <h2 class="text-center">Eliza ChatBot</h2>
     </div>
     <div class="listClass">
-        <ul id="conversation_list" ></ul>
+    <ul id="conversation_list" ></ul>
  </div>
 
  <!-- User input is entered for Eliza response -->
 <form>
-    User Input: <input class = "form-control" id = "userInput" name="user"></input><br> <br> <br>
-    <!-- Display chatbot output according to user input -->
+    User Input: <u><input class = "form-control" id = "userInput" name="user" placeholder = "Enter text for Eliza to respond to"></input></u>
+    <br> <br> <br>
+   
 </form>
 
 
@@ -63,7 +79,7 @@
         event.preventDefault(); 
 
         // Checks to see if user input is valid
-        list.append("<li class='list-group-item list-group-item-success'>"+"User : " + userText + "</li>");
+        list.append("<li class='list-group-item list-group-item-success'>"+"User: " + userText + "</li>");
 
         const queryParams = {"userInput" : userText }
         //Jquery to detect user input if localhost was successful 
@@ -75,7 +91,9 @@
                     list.append(newItem)
                 }, 100);// Setting wait time for output
         }).fail(function(){
-            const newItem = "<li class='list-group-item list-group-item-danger' >Eliza is currently unavailable right now";
+            const newItem = "<li class='list-group-item list-group-item-danger' >Eliza: I am currently unavailable right now sorry.";
+                window.alert("You must be running ElizaResponse.go in order to begin chat");
+
             list.append(newItem);
         });
       });
