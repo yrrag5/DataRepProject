@@ -108,6 +108,15 @@ func ElizaResponse(input string) string {
         return "Im glad you noticed the background, are you looking forward to The Last Jedi?"
     }
 
+     if matched, _ := regexp.MatchString(`(?i).*\bI am\b.*`, input); matched {
+        return "Good to hear, my creator is very exicted for it."
+    }
+
+    
+     if matched, _ := regexp.MatchString(`(?i).*\bNo\b.*`, input); matched {
+        return "Oh... Ok then."
+    }
+
      if matched, _ := regexp.MatchString(`(?i).*\bmay the force be with you\b.*`, input); matched {
         return "And also with you!"
     }
